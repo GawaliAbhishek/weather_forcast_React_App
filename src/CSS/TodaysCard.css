@@ -1,0 +1,8 @@
+.main{
+    display: flex;
+    flex-direction: row;
+}
+.time_el{
+    margin: 2rem;
+    background-color: whitesmoke;
+}
