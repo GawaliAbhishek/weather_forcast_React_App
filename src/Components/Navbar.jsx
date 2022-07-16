@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -67,13 +67,42 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-//   const giveData=(response)=>{
-//     console.log(response);
-// }
+  export const giveData=(city)=>{
+  
+    const setData=()=>{
+      return city;
+    }
+    return setData;
+  }
+
+   
+
 const Navbar =()=>{
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
-    const [response,setResponse]=useState();
+    // const [contry,setContry]=useState();
+    // const [name,setName]=useState();
+    // const [region,setREgion]=useState();
+    // const [lat,setLat]=useState();
+    // const [lon,setLon]=useState();
+
+    const[city,setCity]=useState();
+
+    useEffect(()=>{
+    //   const fetchAPI=async()=>{
+    //    const url=`http://api.weatherstack.com/current?access_key=61e6dabba6e9c55962d2869cadcc54ba&query=${city}`;
+    // const response=await fetch(url);
+    // const JSON=await response.json();
+    // console.log(JSON);
+    // setContry(JSON.location.country);
+    // setName(JSON.location.name);
+    // setREgion(JSON.location.region);
+    // setLat(JSON.location.lat);
+    // setLon(JSON.location.lon);
+    // giveData(contry,name,region,lat,lon)
+    //   }
+    //   fetchAPI();
+    });
     
 
     const handleClick = (event) => {
@@ -85,13 +114,16 @@ const Navbar =()=>{
     };
     const inputEvent=(event)=>{
      const city=event.target.value;
-    //  getData(city);
+       setCity(city)
+       giveData(city);
+       
     }
-  //   const getData= async(city)=>{
-  //  const data=await axios.get(`http://api.weatherstack.com/current?access_key=ad933f25e5dd4891e030b77ff5b0424d&query=${city}`);
-  //   setResponse(data);
-  //   giveData(response);
-  //   }
+    
+    
+    
+    
+   
+
     
 
     
@@ -144,4 +176,4 @@ return(
 </>);
 }
 export default Navbar;
-// export {giveData};
+
