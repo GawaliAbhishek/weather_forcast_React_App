@@ -1,8 +1,5 @@
-import React from "react";
-import Navbar from "./Components/Navbar";
-import TodaysCard from "./Components/TodaysCard";
 import axios from "axios";
-//import { giveData } from "./DataService";
+
 const getData = async () => {
     let lat = 0;
     let lon = 0;
@@ -12,8 +9,8 @@ const getData = async () => {
         lon = longitude
     });
 
- const res = await axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=9d46faea8fc499b6e66aefd0a5663786&units=metric`);
-    // console.log(res);
+ const {res} = await axios.get(`http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=9d46faea8fc499b6e66aefd0a5663786&units=metric`);
+     console.log(res);
      const report = {
         feels_like: res.data.main.feels_like,
         humidity: res.data.main.humidity,
@@ -24,27 +21,17 @@ const getData = async () => {
         weather:res.data.weather[0].main,
         icon:res.data.weather[0].icon
     }
-   //console.log(report);
+   console.log(report);
+    giveData(report)
     
-    return report;
    
   
 
 }
-
-const giveData=  ()=>{
-  const prop=getData();
+getData();
+const giveData=  (prop)=>{
+    console.log(prop);
     return prop;
 }
-const App = () => {
-   
-    const report=giveData(); 
-    console.log(report);
-  
-     return (<>
-        <Navbar/>
-        <TodaysCard data={report}/>
-    </>);
-     
-}
-export default App;
+export {giveData};
+

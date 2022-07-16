@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
@@ -10,6 +10,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import CloudIcon from '@material-ui/icons/Cloud';
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -66,9 +67,14 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
+//   const giveData=(response)=>{
+//     console.log(response);
+// }
 const Navbar =()=>{
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [response,setResponse]=useState();
+    
 
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
@@ -77,6 +83,18 @@ const Navbar =()=>{
     const handleClose = () => {
       setAnchorEl(null);
     };
+    const inputEvent=(event)=>{
+     const city=event.target.value;
+    //  getData(city);
+    }
+  //   const getData= async(city)=>{
+  //  const data=await axios.get(`http://api.weatherstack.com/current?access_key=ad933f25e5dd4891e030b77ff5b0424d&query=${city}`);
+  //   setResponse(data);
+  //   giveData(response);
+  //   }
+    
+
+    
     
 return(
 <>
@@ -116,6 +134,7 @@ return(
                 input: classes.inputInput,
               }}
               inputProps={{ 'aria-label': 'search' }}
+              onChange={inputEvent}
             />
           </div>
         </Toolbar>
@@ -125,3 +144,4 @@ return(
 </>);
 }
 export default Navbar;
+// export {giveData};
