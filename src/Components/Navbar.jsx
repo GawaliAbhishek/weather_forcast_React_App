@@ -10,7 +10,8 @@ import SearchIcon from '@material-ui/icons/Search';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import CloudIcon from '@material-ui/icons/Cloud';
-import axios from "axios";
+import Button from '@material-ui/core/Button';
+import { useForceUpdate } from "./TodaysCard";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -66,43 +67,24 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   }));
-
-  export const giveData=(city)=>{
-  
-    const setData=()=>{
-      return city;
-    }
-    return setData;
-  }
-
-   
+ export  let Cityname="Akola";
+ export let refresh=false;
+ const clickFuntion=()=>{
+  refresh=true;
+ }
 
 const Navbar =()=>{
     const classes = useStyles();
     const [anchorEl, setAnchorEl] = React.useState(null);
-    // const [contry,setContry]=useState();
-    // const [name,setName]=useState();
-    // const [region,setREgion]=useState();
-    // const [lat,setLat]=useState();
-    // const [lon,setLon]=useState();
+    
 
-    const[city,setCity]=useState();
+
+
+   
 
     useEffect(()=>{
-    //   const fetchAPI=async()=>{
-    //    const url=`http://api.weatherstack.com/current?access_key=61e6dabba6e9c55962d2869cadcc54ba&query=${city}`;
-    // const response=await fetch(url);
-    // const JSON=await response.json();
-    // console.log(JSON);
-    // setContry(JSON.location.country);
-    // setName(JSON.location.name);
-    // setREgion(JSON.location.region);
-    // setLat(JSON.location.lat);
-    // setLon(JSON.location.lon);
-    // giveData(contry,name,region,lat,lon)
-    //   }
-    //   fetchAPI();
     });
+    
     
 
     const handleClick = (event) => {
@@ -114,20 +96,10 @@ const Navbar =()=>{
     };
     const inputEvent=(event)=>{
      const city=event.target.value;
-       setCity(city)
-       giveData(city);
-       
+       Cityname=city;
     }
-    
-    
-    
-    
-   
-
-    
-
-    
-    
+    //console.log(city);
+     console.log(Cityname);  
 return(
 <>
 <div className={classes.root}>
@@ -169,6 +141,7 @@ return(
               onChange={inputEvent}
             />
           </div>
+          <Button variant="contained" style={{margin:"1rem"}} onClick={clickFuntion}>Search</Button>
         </Toolbar>
       </AppBar>
     </div>
